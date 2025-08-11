@@ -183,10 +183,52 @@ CMakeFiles/meow.dir/src/main.cpp.o: /home/devenv/code/Project/githubrepo/kitty-l
   /usr/include/c++/12/bits/basic_ios.tcc \
   /usr/include/c++/12/bits/ostream.tcc \
   /usr/include/c++/12/istream \
-  /usr/include/c++/12/bits/istream.tcc
+  /usr/include/c++/12/bits/istream.tcc \
+  /usr/include/c++/12/fstream \
+  /usr/include/c++/12/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/12/bits/c++io.h \
+  /usr/include/c++/12/bits/fstream.tcc \
+  /usr/include/c++/12/sstream \
+  /usr/include/c++/12/bits/sstream.tcc \
+  /home/devenv/code/Project/githubrepo/kitty-lang/src/headers/tokenization.hpp \
+  /usr/include/c++/12/vector \
+  /usr/include/c++/12/bits/stl_uninitialized.h \
+  /usr/include/c++/12/bits/stl_vector.h \
+  /usr/include/c++/12/bits/stl_bvector.h \
+  /usr/include/c++/12/bits/vector.tcc \
+  /usr/include/c++/12/optional \
+  /usr/include/c++/12/bits/enable_special_members.h \
+  /home/devenv/code/Project/githubrepo/kitty-lang/src/headers/asmconv.hpp
 
+
+/home/devenv/code/Project/githubrepo/kitty-lang/src/headers/asmconv.hpp:
+
+/usr/include/c++/12/bits/enable_special_members.h:
+
+/usr/include/c++/12/bits/stl_bvector.h:
+
+/usr/include/c++/12/bits/stl_vector.h:
+
+/usr/include/c++/12/bits/stl_uninitialized.h:
+
+/home/devenv/code/Project/githubrepo/kitty-lang/src/headers/tokenization.hpp:
+
+/usr/include/c++/12/sstream:
+
+/usr/include/c++/12/bits/fstream.tcc:
+
+/usr/include/x86_64-linux-gnu/c++/12/bits/c++io.h:
+
+/usr/include/x86_64-linux-gnu/c++/12/bits/basic_file.h:
+
+/usr/include/c++/12/bits/codecvt.h:
+
+/usr/include/c++/12/fstream:
 
 /usr/include/c++/12/bits/basic_ios.tcc:
+
+/usr/include/c++/12/vector:
 
 /usr/include/c++/12/bits/streambuf_iterator.h:
 
@@ -237,6 +279,8 @@ CMakeFiles/meow.dir/src/main.cpp.o: /home/devenv/code/Project/githubrepo/kitty-l
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
+
+/usr/include/c++/12/bits/sstream.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
@@ -504,6 +548,8 @@ CMakeFiles/meow.dir/src/main.cpp.o: /home/devenv/code/Project/githubrepo/kitty-l
 
 /usr/include/c++/12/bits/ostream_insert.h:
 
+/usr/include/c++/12/optional:
+
 /usr/include/c++/12/bits/allocator.h:
 
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
@@ -537,6 +583,8 @@ CMakeFiles/meow.dir/src/main.cpp.o: /home/devenv/code/Project/githubrepo/kitty-l
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
 /usr/include/c++/12/bits/refwrap.h:
+
+/usr/include/c++/12/bits/vector.tcc:
 
 /usr/include/c++/12/bits/predefined_ops.h:
 
