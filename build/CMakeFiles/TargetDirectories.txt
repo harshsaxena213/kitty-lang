@@ -1,0 +1,3 @@
+/home/devenv/code/Project/githubrepo/kitty-lang/build/CMakeFiles/meow.dir
+/home/devenv/code/Project/githubrepo/kitty-lang/build/CMakeFiles/edit_cache.dir
+/home/devenv/code/Project/githubrepo/kitty-lang/build/CMakeFiles/rebuild_cache.dir
