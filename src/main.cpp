@@ -2,8 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include "./headers/tokenization.hpp"
-#include "./headers/asmconv.hpp"
-
+#include "./headers/genration.hpp"
 
 
 int main(int argc,char* argv[]){
@@ -25,9 +24,19 @@ int main(int argc,char* argv[]){
 
 	Tokenizer Token_obj(std::move(content));
 	std::vector<Token> tokenized_content=Token_obj.tokenze();
-    {
+	Parser parser(std::move(tokenized_content));
+	std::optional<NodeTail> tree=parser.parse();
+
+	if(!tree.has_value()){
+		std::cerr<<"No Exit Statemtn FOund";
+		exit(EXIT_FAILURE);
+
+	}
+	Genrator genrator(tree.value());
+
+	{
         std::fstream file("./asm/out.asm",std::ios::out);
-        file<<content_token_to_asm(tokenized_content);
+        file<<genrator.genrate();
     }
     system("nasm -felf64 ./asm/out.asm");
     system("ld -o ./asm/out ./asm/out.o");

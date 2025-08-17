@@ -5,7 +5,7 @@
 enum class TokenType{
     tail,  //end    
     attherate, //Marks The End Of A Statement Just Like ; in Cpp
-    int_lit //Interger
+    int_lit //Intergerf
 };
 
 struct Token{
