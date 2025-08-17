@@ -39,13 +39,21 @@ class Parser{
             std::optional<NodeTail> tail_node;
             while (look_ahead().has_value())
             {
-                if(look_ahead().value().type==TokenType::tail){
+                if(look_ahead().value().type==TokenType::tail && look_ahead(1).has_value() && look_ahead(1).value().type==TokenType::open_paranthesis){
+                    take_it();
                     take_it();
                     if(auto node_expr=parse_expr()){
                         tail_node=NodeTail{.expr=node_expr.value()};
                     }
                     else{
                         return {};
+                    }
+                    if(look_ahead().value().type==TokenType::close_paranthesis){
+                        take_it();
+                    }
+                    else{
+                        std::cerr<<"Expected A Open Paranthesis";
+                        exit(EXIT_FAILURE); 
                     }
                     if(look_ahead().has_value() &&look_ahead().value().type==TokenType::attherate){
                         take_it();

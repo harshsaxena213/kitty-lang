@@ -5,7 +5,10 @@
 enum class TokenType{
     tail,  //end    
     attherate, //Marks The End Of A Statement Just Like ; in Cpp
-    int_lit //Intergerf
+    int_lit, //Intergerf
+    open_paranthesis, // (
+    close_paranthesis // )
+
 };
 
 struct Token{
@@ -56,6 +59,16 @@ class Tokenizer{
                 }
                 else if(std::isspace(look_ahead().value())){                //Check For Space
                     take_it();
+                    continue;
+                }
+                else if(look_ahead().value()=='('){
+                    take_it();
+                    content_tokens.push_back({.type=TokenType::open_paranthesis});
+                    continue;
+                }
+                else if(look_ahead().value()==')'){
+                    take_it();
+                    content_tokens.push_back({.type=TokenType::close_paranthesis});
                     continue;
                 }
                 else if(look_ahead().value()=='@'){   
