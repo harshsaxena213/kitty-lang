@@ -20,7 +20,7 @@ public:
             {
                 gen->m_writer << "    mov rax," << expr_int_lit.int_lit.value.value() << "\n";
                 gen->push(" rax");
-                gen->m_writer <<"    push rax\n";
+                // gen->m_writer <<"    push rax\n";
             }
             void operator()(const NodeExpressionIdent &expr_garb)
             {
@@ -47,7 +47,7 @@ public:
             {
                 gen->gen_expr(stmt_tail.expr);
                 gen->m_writer << "    mov rax,60\n";
-                gen->pop("rdi");
+                gen->pop(" rdi");
                 gen->m_writer << "    syscall\n";
             }
             void operator()(const NodeStatementGrab &stmt_grab)
@@ -75,6 +75,16 @@ public:
         {
             gen_stmt(stmt);
         }
+
+        
+        if (m_pgrm.stmt.empty()) {
+        
+        m_writer << "    mov rax,60\n";
+        m_writer << "    xor rdi,rdi\n";  
+        m_writer << "    syscall\n";
+        return m_writer.str();
+        
+    }
 
         m_writer << "    mov rax,60\n";
         m_writer << "    pop rdi\n";
