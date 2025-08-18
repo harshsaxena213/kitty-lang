@@ -1239,7 +1239,7 @@
 				}
 			],
 			"type" : "BOOL",
-			"value" : "FALSE"
+			"value" : ""
 		},
 		{
 			"name" : "kitty-lang_BINARY_DIR",

@@ -1,1 +1,2 @@
-tail(15)@
+grab x=25@
+tail(x)@

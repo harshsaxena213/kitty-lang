@@ -7,7 +7,10 @@ enum class TokenType{
     attherate, //Marks The End Of A Statement Just Like ; in Cpp
     int_lit, //Intergerf
     open_paranthesis, // (
-    close_paranthesis // )
+    close_paranthesis,
+    ident,
+    grab,
+    eq // )
 
 };
 
@@ -43,9 +46,16 @@ class Tokenizer{
                         content_tokens.push_back({.type=TokenType::tail});        //Check For Tail 
                         temp_dumper.clear();
                         continue;
-                    }else{
-                        std::cout<<"Wrong Please Refer To Docs For Correct Usage";  
-                        exit(EXIT_FAILURE);
+                    }
+                    else if(temp_dumper=="grab"){
+                        content_tokens.push_back({.type=TokenType::grab});
+                        temp_dumper.clear();
+                        continue;
+                    }
+                    else{
+                        content_tokens.push_back({.type=TokenType::ident,.value=temp_dumper});
+                        temp_dumper.clear();
+                        continue; 
                     } 
                 }
                 else if(std::isdigit(look_ahead().value())){  ///Check For DIgit
@@ -69,6 +79,11 @@ class Tokenizer{
                 else if(look_ahead().value()==')'){
                     take_it();
                     content_tokens.push_back({.type=TokenType::close_paranthesis});
+                    continue;
+                }
+                else if(look_ahead().value()=='='){
+                    take_it();                                               //Check For Eqaul
+                    content_tokens.push_back({.type=TokenType::eq});
                     continue;
                 }
                 else if(look_ahead().value()=='@'){   

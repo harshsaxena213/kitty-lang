@@ -3,13 +3,33 @@
 #include "./tokenization.hpp"
 #include <string>
 #include <iostream>
-struct NodeExpression{
+#include <variant>
+
+struct NodeExpressionLit{
     Token int_lit;
 };
-struct NodeTail{
+struct NodeExpressionIdent{
+    Token ident;
+};
+struct NodeExpression{
+    std::variant<NodeExpressionIdent,NodeExpressionLit> var ; 
+}; 
+
+struct NodeStatementTail{
     NodeExpression expr;
 };
 
+struct NodeStatementGrab{
+    Token ident;
+    NodeExpression expr;
+};
+struct NodeStatement{
+    std::variant<NodeStatementTail,NodeStatementGrab>stmt;
+};
+
+struct NodeProgram{
+    std::vector<NodeStatement> stmt;
+};
 
 
 class Parser{
@@ -21,12 +41,13 @@ class Parser{
 
         }
 
+        
         std::optional<NodeExpression> parse_expr(){
-            if(look_ahead().has_value() && look_ahead().value().type==TokenType::tail){
-                return NodeExpression{.int_lit=take_it()};
-            }
             if(look_ahead().has_value() && look_ahead().value().type==TokenType::int_lit){
-                return NodeExpression{.int_lit=take_it()};
+                return NodeExpression{.var=NodeExpressionLit{.int_lit=take_it()}};
+            }
+            else if(look_ahead().has_value() && look_ahead().value().type==TokenType::ident){
+                return NodeExpression{.var=NodeExpressionIdent{.ident=take_it()}};
             }
             else
             {
@@ -35,15 +56,13 @@ class Parser{
             }
             
         }
-        std::optional<NodeTail> parse(){
-            std::optional<NodeTail> tail_node;
-            while (look_ahead().has_value())
-            {
-                if(look_ahead().value().type==TokenType::tail && look_ahead(1).has_value() && look_ahead(1).value().type==TokenType::open_paranthesis){
+        std::optional<NodeStatement> parse_statement(){
+                if(look_ahead().has_value() && look_ahead().value().type==TokenType::tail && look_ahead(1).has_value() && look_ahead(1).value().type==TokenType::open_paranthesis){
                     take_it();
                     take_it();
+                    NodeStatementTail tail_node;
                     if(auto node_expr=parse_expr()){
-                        tail_node=NodeTail{.expr=node_expr.value()};
+                        tail_node=NodeStatementTail{.expr=node_expr.value()};
                     }
                     else{
                         return {};
@@ -63,15 +82,42 @@ class Parser{
                         std::cout<<"No AtTheRate";
                         exit(EXIT_FAILURE);
                     }
-                    
+                    return NodeStatement{.stmt=tail_node};
                 }
-            }
-            m_index=0;
-            return tail_node;
-            
+                else if(look_ahead().has_value() && look_ahead().value().type==TokenType::grab && look_ahead(1).has_value() && look_ahead(1).value().type==TokenType::ident && look_ahead(2).has_value() && look_ahead(2).value().type==TokenType::eq){
+                    take_it();
+                    auto stmt_grab=NodeStatementGrab{.ident=take_it()};
+                    take_it();
+                    if(auto expr=parse_expr()){
+                        stmt_grab.expr = expr.value();
+                    }
+                    else{
+                        std::cout<<"Invalid Expression !";
+                    }
+                    if(look_ahead().has_value() && look_ahead().value().type==TokenType::attherate){
+                        take_it();
+                    }
+                    else{
+                        std::cout<<"Expected At The Rate";
+                        exit(EXIT_FAILURE);
+                    }
+                    return NodeStatement{.stmt=stmt_grab};
+                }
+                else{
+                    return {};
+                }
         }
 
-
+        std::optional<NodeProgram>parse_program(){
+            NodeProgram pgram;
+            if(auto stmt=parse_statement()){
+                pgram.stmt.push_back(stmt.value());
+            }else{
+                        // std::cout<<"Expected At The Rate";
+                        // exit(EXIT_FAILURE);
+            }
+            return pgram;
+        }
     private:
         std::optional<Token> look_ahead(int ahead=0) const{
             if (temp_index+ahead>=m_tokens.size())

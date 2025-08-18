@@ -52,7 +52,7 @@ build cmake_object_order_depends_target_meow: phony || .
 build CMakeFiles/meow.dir/src/main.cpp.o: CXX_COMPILER__meow_unscanned_Debug /home/mrpeenar/Code/Project/githubrepo/kitty-lang-re/kitty-lang/src/main.cpp || cmake_object_order_depends_target_meow
   CONFIG = Debug
   DEP_FILE = CMakeFiles/meow.dir/src/main.cpp.o.d
-  FLAGS = -g
+  FLAGS = -g -std=c++20
   OBJECT_DIR = CMakeFiles/meow.dir
   OBJECT_FILE_DIR = CMakeFiles/meow.dir/src
 

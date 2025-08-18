@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/mrpeenar/Code/Project/githubrepo/kitty-lang-re/kitty-lang/build",
-  "command": "/usr/bin/g++ -g -o CMakeFiles/meow.dir/src/main.cpp.o -c /home/mrpeenar/Code/Project/githubrepo/kitty-lang-re/kitty-lang/src/main.cpp",
+  "command": "/usr/bin/g++ -g -std=c++20 -o CMakeFiles/meow.dir/src/main.cpp.o -c /home/mrpeenar/Code/Project/githubrepo/kitty-lang-re/kitty-lang/src/main.cpp",
   "file": "/home/mrpeenar/Code/Project/githubrepo/kitty-lang-re/kitty-lang/src/main.cpp",
   "output": "/home/mrpeenar/Code/Project/githubrepo/kitty-lang-re/kitty-lang/build/CMakeFiles/meow.dir/src/main.cpp.o"
 }

@@ -25,18 +25,18 @@ int main(int argc,char* argv[]){
 	Tokenizer Token_obj(std::move(content));
 	std::vector<Token> tokenized_content=Token_obj.tokenze();
 	Parser parser(std::move(tokenized_content));
-	std::optional<NodeTail> tree=parser.parse();
+	std::optional<NodeProgram> prog=parser.parse_program();
 
-	if(!tree.has_value()){
-		std::cerr<<"No Exit Statemtn FOund";
+	if(!prog.has_value()){
+		std::cerr<<"No Valid Program FOund";
 		exit(EXIT_FAILURE);
 
 	}
-	Genrator genrator(tree.value());
+	Genrator genrator(prog.value());
 
 	{
         std::fstream file("./asm/out.asm",std::ios::out);
-        file<<genrator.genrate();
+        file<<genrator.gen_prgram();
     }
     system("nasm -felf64 ./asm/out.asm");
     system("ld -o ./asm/out ./asm/out.o");
